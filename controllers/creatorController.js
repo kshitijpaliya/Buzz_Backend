@@ -1,4 +1,4 @@
-import Creator from "../models/creator.js";
+import Creator from "../models/Creator.js";
 export const getAllCreators = async (req, res) => {
   try {
     const creators = await Creator.find()

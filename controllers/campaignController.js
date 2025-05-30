@@ -1,6 +1,6 @@
-import Campaign from "../models/campaign.js";
-import Creator from "../models/creator.js";
-import User from "../models/user.js";
+import Campaign from "../models/Campaign.js";
+import Creator from "../models/Creator.js";
+import User from "../models/User.js";
 // Create a new campaign
 export const createCampaign = async (req, res) => {
   try {

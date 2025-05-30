@@ -57,7 +57,7 @@ import mongoose from "mongoose";
 // seed().catch(console.error);
 // import mongoose from "mongoose";
 // import User from "./models/User.js";
-import Creator from "./models/creator.js";
+import Creator from "./models/Creator.js";
 
 const MONGO_URI =
   "mongodb+srv://studyforsixmonths:IMlc8Ot6joJ3TsWF@buzz.l1iomfs.mongodb.net/?retryWrites=true&w=majority&appName=buzz";
