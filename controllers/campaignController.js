@@ -1,4 +1,4 @@
-import Campaign from "../models/Campaign.js";
+import Campaign from "../models/campaign.js";
 import Creator from "../models/creator.js";
 import User from "../models/user.js";
 // Create a new campaign
