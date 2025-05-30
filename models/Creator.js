@@ -16,7 +16,6 @@ const CreatorSchema = new mongoose.Schema({
   platform: { type: String }, // e.g., "Instagram", "YouTube"
   price: { type: Number }, // Price per video/collab
   avatar: { type: String }, // Optional profile image
-
   // Link to uploaded videos
   videos: { type: String }, // URL to the video or a JSON array of video URLs
 });
