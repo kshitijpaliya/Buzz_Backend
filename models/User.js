@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema(
       enum: ["brand", "creator", "admin"],
       required: true,
     },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+      required: true,
+    },
   },
   { timestamps: true }
 );

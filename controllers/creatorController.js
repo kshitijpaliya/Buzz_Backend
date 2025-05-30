@@ -2,7 +2,7 @@ import Creator from "../models/Creator.js";
 export const getAllCreators = async (req, res) => {
   try {
     const creators = await Creator.find()
-      .populate("userId", "name email avatar role")
+      .populate("userId", "name email avatar role gender")
       .select("-__v")
       .sort({ createdAt: -1 }); // newest first
     res.status(200).json(creators);
@@ -16,7 +16,7 @@ export const getCreatorById = async (req, res) => {
   try {
     const { id } = req.params;
     const creator = await Creator.findById(id)
-      .populate("userId", "name email avatar role")
+      .populate("userId", "name email avatar role gender")
       .select("-__v");
 
     if (!creator) {
