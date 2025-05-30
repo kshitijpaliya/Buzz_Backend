@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "./user.js"; // Assuming you have a User model
+import User from "./User.js"; // Assuming you have a User model
 const CreatorSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   handles: [
