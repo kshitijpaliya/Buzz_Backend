@@ -454,30 +454,30 @@
 // // }
 
 // // seed().catch(console.error);
-import mongoose from "mongoose";
-import User from "./models/User.js";
+// import mongoose from "mongoose";
+// import User from "./models/User.js";
 
-const MONGO_URI =
-  "mongodb+srv://studyforsixmonths:IMlc8Ot6joJ3TsWF@buzz.l1iomfs.mongodb.net/?retryWrites=true&w=majority&appName=buzz";
+// const MONGO_URI =
+//   "mongodb+srv://studyforsixmonths:IMlc8Ot6joJ3TsWF@buzz.l1iomfs.mongodb.net/?retryWrites=true&w=majority&appName=buzz";
 
-async function migrateUsers() {
-  try {
-    await mongoose.connect(MONGO_URI);
-    console.log("Connected to MongoDB");
+// async function migrateUsers() {
+//   try {
+//     await mongoose.connect(MONGO_URI);
+//     console.log("Connected to MongoDB");
 
-    // Update all users without gender field
-    const result = await User.updateMany(
-      { gender: { $exists: false } }, // Find users without gender field
-      { $set: { gender: "Female" } } // Set default gender
-    );
+//     // Update all users without gender field
+//     const result = await User.updateMany(
+//       { gender: { $exists: false } }, // Find users without gender field
+//       { $set: { gender: "Female" } } // Set default gender
+//     );
 
-    console.log(`Updated ${result.modifiedCount} users with default gender`);
+//     console.log(`Updated ${result.modifiedCount} users with default gender`);
 
-    await mongoose.disconnect();
-    console.log("Migration completed");
-  } catch (error) {
-    console.error("Migration failed:", error);
-  }
-}
+//     await mongoose.disconnect();
+//     console.log("Migration completed");
+//   } catch (error) {
+//     console.error("Migration failed:", error);
+//   }
+// }
 
-migrateUsers().catch(console.error);
+// migrateUsers().catch(console.error);

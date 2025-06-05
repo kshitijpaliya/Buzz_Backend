@@ -2,8 +2,10 @@ import Creator from "../models/Creator.js";
 export const getAllCreators = async (req, res) => {
   try {
     const creators = await Creator.find()
-      .populate("userId", "name email avatar role gender")
-      .select("-__v")
+      .populate("userId", "name avatar gender")
+      .select(
+        "userId location followers niche videoType agegroup platform avatar videos"
+      )
       .sort({ createdAt: -1 }); // newest first
     res.status(200).json(creators);
   } catch (err) {
@@ -16,8 +18,10 @@ export const getCreatorById = async (req, res) => {
   try {
     const { id } = req.params;
     const creator = await Creator.findById(id)
-      .populate("userId", "name email avatar role gender")
-      .select("-__v");
+      .populate("userId", "name avatar gender")
+      .select(
+        "userId location followers niche videoType agegroup platform avatar videos"
+      );
 
     if (!creator) {
       return res.status(404).json({ error: "Creator not found" });
