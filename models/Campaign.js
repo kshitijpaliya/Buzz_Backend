@@ -371,20 +371,7 @@ const campaignSchema = new mongoose.Schema(
         required: true,
         default: false,
       },
-      files: [
-        {
-          fileName: String,
-          fileUrl: String,
-          fileType: String,
-          fileSize: Number,
-          uploadedAt: {
-            type: Date,
-            default: Date.now,
-          },
-        },
-      ],
     },
-
     // Creators & Selection
     creators: {
       shortlistedCreators: [
@@ -394,9 +381,13 @@ const campaignSchema = new mongoose.Schema(
             ref: "Creator",
             required: true,
           },
+          name: {
+            type: String,
+            ref: "User",
+            required: true,
+          },
           price: {
             type: Number,
-            required: true,
           },
           status: {
             type: String,
@@ -411,10 +402,6 @@ const campaignSchema = new mongoose.Schema(
         },
       ],
       totalCreators: {
-        type: Number,
-        default: 0,
-      },
-      selectedCreators: {
         type: Number,
         default: 0,
       },
