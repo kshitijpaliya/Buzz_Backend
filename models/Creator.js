@@ -2,6 +2,21 @@ import mongoose from "mongoose";
 import User from "./User.js"; // Assuming you have a User model
 const CreatorSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  gender: {
+    type: String,
+    enum: ["Male", "Female", "Other"],
+    required: true,
+  },
+  // address: {
+  //   city: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   state: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
   handles: [
     {
       type: String,
@@ -12,6 +27,8 @@ const CreatorSchema = new mongoose.Schema({
   followers: { type: Number },
   niche: [{ type: String }], // e.g., ['Lifestyle', 'Fitness']
   videoType: [{ type: String }], // e.g., ['Unboxing', 'GRWM']
+  creatortags: [{ type: String }],
+  admintags: [{ type: String }],
   agegroup: { type: String }, // e.g., "18-24
   platform: { type: String }, // e.g., "Instagram", "YouTube"
   price: { type: Number }, // Price per video/collab
