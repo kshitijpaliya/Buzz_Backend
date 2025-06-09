@@ -41,7 +41,7 @@ export const getAllCreators = async (req, res) => {
   try {
     const {
       page = 1,
-      limit = 12,
+      limit = 20,
       category,
       search,
       minFollowers,
@@ -116,9 +116,9 @@ export const getAllCreators = async (req, res) => {
 
     // Fetch creators with filters and pagination
     const creators = await Creator.find(filters)
-      .populate("userId", "name avatar email contact role")
+      .populate("userId", "name avatar")
       .select(
-        "userId gender location followers niche videoType creatortags agegroup platform avatar videos handles"
+        "userId gender location followers niche videoType creatortags agegroup platform avatar videos"
       )
       .skip(skip)
       .limit(parseInt(limit))

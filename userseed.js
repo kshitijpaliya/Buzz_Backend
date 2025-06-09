@@ -4,24 +4,45 @@ const MONGO_URI =
   "mongodb+srv://studyforsixmonths:kshitij15pal@buzz.l1iomfs.mongodb.net/?retryWrites=true&w=majority&appName=buzz";
 
 const creatorNames = [
-  // { name: "Arpit Yadav", gender: "Male" },
-  // { name: "Suprith Shetty", gender: "Male" },
-  // { name: "Shruti Agrawal", gender: "Female" },
-  // { name: "Sanjana Sharma", gender: "Female" },
-  // { name: "Vidushi", gender: "Female" },
-  // { name: "Goutam Sree Govind", gender: "Male" },
-  // { name: "Anika", gender: "Female" },
-  // { name: "Mehak Agrawal", gender: "Female" },
-  // { name: "Hitika", gender: "Female" },
-  // { name: "Regan Gupta", gender: "Female" },
-  // { name: "Shivani Baraily", gender: "Female" },
-  { name: "Bageera", gender: "Male" }, // Gender not specified
-  // { name: "Aurelia Menezes", gender: "Female" },
-  // { name: "Neha Sharma", gender: "Female" },
-  // { name: "Madhavi Gorecha", gender: "Female" },
-  // { name: "Megha Birlan", gender: "Female" },
-  // { name: "Anshika Kodari", gender: "Female" },
-  // { name: "Hema.H", gender: "Female" },
+  // { name: "Arushi Garg" },
+  // { name: "Aayushi Gupta" },
+  // { name: "Bhaavya gupta" },
+  // { name: "Dhelie" },
+  // { name: "Enu" },
+  // { name: "Ishita Bhatt" },
+  // { name: "Karabi Kashyap" },
+  { name: "Khushi" },
+  // { name: "shourye" },
+  // { name: "Shreya Gaggar" },
+  // { name: "Sneh gaur" },
+  // { name: "Swastika Mitra" },
+  // { name: "Aishwarya Sharma" },
+  // { name: "Anwesha Ayoshna" },
+  // { name: "Archika" },
+  // { name: "Atemla Shiu" },
+  // { name: "Ayushi jain" },
+  // { name: "Disha Virmani" },
+  // { name: "Dr Rohini Jaybhaye" },
+  // { name: "Dr. Himaja Reddy" },
+  // { name: "Kirti Gosain" },
+  // { name: "Mahima Gava" },
+  // { name: "malvika bhatt" },
+  // { name: "Mansi" },
+  // { name: "Meemansa Tripathi" },
+  // { name: "Neha Baid" },
+  // { name: "Ojasvi Khandelwal" },
+  // { name: "Priya" },
+  // { name: "Priyanka" },
+  // { name: "Raina De" },
+  // { name: "Riya" },
+  // { name: "Samarth Srivastava" },
+  // { name: "Saumya Sarah Baristo" },
+  // { name: "Sindhoori" },
+  // { name: "Smriti Singh" },
+  // { name: "Supreet dhanjal" },
+  // { name: "Yaamini Shah" },
+  // { name: "Yukti" },
+  // { name: "Sandeep rana" },
 ];
 
 async function seed() {
@@ -33,11 +54,10 @@ async function seed() {
       try {
         const user = await User.create({
           name: name,
-          email: `${name.toLowerCase().replace(/\s+/g, "")}@example.com`,
+          email: `${name.toLowerCase().replace(/\s+/g, "")}@example1.com`,
           passwordHash: "", // Add logic if needed
           avatar: "", // Add default avatar logic if needed
           role: "creator",
-          gender: gender,
         });
 
         console.log(`👤 Created user: ${name} (ID: ${user._id})`);
