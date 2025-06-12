@@ -42,7 +42,6 @@ export const getAllCreators = async (req, res) => {
     const {
       page = 1,
       limit = 20,
-      category,
       search,
       minFollowers,
       maxFollowers,
@@ -50,15 +49,16 @@ export const getAllCreators = async (req, res) => {
       genders,
       niches,
       types,
+      creatorTags,
     } = req.query;
 
     // Build filter object
     const filters = {};
 
     // Category filter (maps to niche field)
-    if (category && category !== "all") {
-      filters.niche = { $in: [new RegExp(category, "i")] };
-    }
+    // if (category && category !== "all") {
+    //   filters.niche = { $in: [new RegExp(category, "i")] };
+    // }
 
     // Search filter - search across name, niche, and location
     if (search) {
@@ -107,7 +107,35 @@ export const getAllCreators = async (req, res) => {
       filters.videoType = { $in: typeArray.map((t) => new RegExp(t, "i")) };
     }
 
-    console.log("Applied filters:", JSON.stringify(filters, null, 2));
+    if (creatorTags) {
+      const creatorTagArray = creatorTags.split(",");
+      filters.creatortags = {
+        $in: creatorTagArray.map((t) => new RegExp(t, "i")),
+      };
+    }
+    // Enhanced logging to show the actual filter values
+    console.log("Query parameters:", {
+      search,
+      minFollowers,
+      maxFollowers,
+      location,
+      genders,
+      niches,
+      types,
+      creatorTags,
+    });
+
+    // Create a loggable version of filters
+    const loggableFilters = JSON.parse(
+      JSON.stringify(filters, (key, value) => {
+        if (value instanceof RegExp) {
+          return { regex: value.source, flags: value.flags };
+        }
+        return value;
+      })
+    );
+
+    console.log("Applied filters:", JSON.stringify(loggableFilters, null, 2));
 
     // Pagination calculations
     const skip = (parseInt(page) - 1) * parseInt(limit);

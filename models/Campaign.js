@@ -272,8 +272,16 @@ const campaignSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: true,
-      default: () =>
-        `CAMP_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      default: function () {
+        // Use brandName if available, else fallback to 'CAMP'
+        const brand =
+          this.brandDetails && this.brandDetails.brandName
+            ? this.brandDetails.brandName.replace(/\s+/g, "").toUpperCase()
+            : "CAMP";
+        return `${brand}_${Date.now()}_${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+      },
     },
 
     // Brand Details
@@ -414,17 +422,13 @@ const campaignSchema = new mongoose.Schema(
         required: true,
         min: 0,
       },
-      platformFee: {
-        type: Number,
-        default: 0,
-      },
       finalAmount: {
         type: Number,
       },
       paymentStatus: {
         type: String,
-        enum: ["pending", "processing", "completed", "failed", "refunded"],
-        default: "pending",
+        enum: ["Pending", "Processing", "Completed", "Failed", "Refunded"],
+        default: "Pending",
       },
       paymentMethod: {
         type: String,
@@ -439,14 +443,14 @@ const campaignSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: [
-        "draft",
-        "active",
-        "in_progress",
-        "completed",
-        "cancelled",
-        "paused",
+        "Draft",
+        "Active",
+        "In Progress",
+        "Completed",
+        "Cancelled",
+        "Paused",
       ],
-      default: "draft",
+      default: "Draft",
     },
 
     // Campaign Lifecycle
@@ -512,12 +516,6 @@ campaignSchema.pre("save", function (next) {
   this.creators.selectedCreators = this.creators.shortlistedCreators.filter(
     (creator) => creator.status === "selected"
   ).length;
-
-  if (this.payment.totalAmount) {
-    this.payment.platformFee = Math.round(this.payment.totalAmount * 0.1);
-    this.payment.finalAmount = this.payment.totalAmount;
-  }
-
   next();
 });
 
