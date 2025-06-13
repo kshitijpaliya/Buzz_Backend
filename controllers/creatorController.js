@@ -150,7 +150,7 @@ export const getAllCreators = async (req, res) => {
       )
       .skip(skip)
       .limit(parseInt(limit))
-      .sort({ followers: -1 }); // Sort by followers descending
+      .sort({ updatedAt: -1 }); // Sort by last updated descending
 
     // Return paginated response
     res.status(200).json({
