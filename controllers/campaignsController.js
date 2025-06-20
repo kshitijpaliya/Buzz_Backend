@@ -11,6 +11,20 @@ export const createCampaign = async (req, res) => {
       creators,
       payment,
     });
+
+    if (creators && Array.isArray(creators.shortlistedCreators)) {
+      for (let i = 0; i < creators.shortlistedCreators.length; i++) {
+        const creatorEntry = creators.shortlistedCreators[i];
+        // If price is not already provided, fetch from Creator model
+        if (!creatorEntry.price && creatorEntry.creatorId) {
+          const creatorDoc = await Creator.findById(creatorEntry.creatorId);
+          if (creatorDoc && creatorDoc.price) {
+            creatorEntry.price = creatorDoc.price;
+          }
+        }
+      }
+    }
+
     const campaign = new Campaign({
       brandDetails,
       campaignSetup,
