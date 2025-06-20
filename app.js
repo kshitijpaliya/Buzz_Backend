@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   res.send("Creator-Brand API is running 🚀");
 });
 
+app.get("/ping", (req, res) => {
+  res.send("pong");
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
