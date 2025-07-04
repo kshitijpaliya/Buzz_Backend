@@ -1,4 +1,6 @@
 .history
 /node_modules
 seed.js
+userseed.js
+creatorseed.js
 .env

@@ -35,6 +35,8 @@ const CreatorSchema = new mongoose.Schema({
   avatar: { type: String }, // Optional profile image
   // Link to uploaded videos
   videos: { type: String }, // URL to the video or a JSON array of video URLs
+  engagementRatio: { type: Number }, // Optional engagement ratio
+  avgReach: { type: Number }, // Optional average reach
 });
 
 export default mongoose.models.Creator ||

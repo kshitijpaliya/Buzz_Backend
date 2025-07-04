@@ -173,10 +173,14 @@ export const getCreatorById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const creator = await Creator.findById(id).populate({
-      path: "userId",
-      select: "name email contact avatar role",
-    });
+    const creator = await Creator.findById(id)
+      .select(
+        "userId gender location followers niche videoType creatortags agegroup platform avatar videos avgReach engagementRatio"
+      )
+      .populate({
+        path: "userId",
+        select: "name avatar role",
+      });
 
     if (!creator) {
       return res.status(404).json({ error: "Creator not found" });
